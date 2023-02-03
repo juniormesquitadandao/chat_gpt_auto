@@ -24,8 +24,8 @@ class ChatGPTAuto {
     this.step = step;
 
     return {
-      one: "Do you write javascript? Please, repeate this like a javascript statement [return chatGPTAuto.instructions('two');]",
-      two: "Nice! Please, repeate this like a javascript statement [return chatGPTAuto.instructions('three')] after you analyse this class code [" + ChatGPTAuto.toString() + "; let chatGPTAuto = new ChatGPTAuto();" + "]",
+      one: "Do you write javascript? Please, repeate exactly this like a javascript statement [return chatGPTAuto.instructions('two');]",
+      two: "Nice! Please, repeate exactly this like a javascript statement [return chatGPTAuto.instructions('three')] after you analyse this class code [" + ChatGPTAuto.toString() + "; let chatGPTAuto = new ChatGPTAuto();" + "]",
       three: "Nice! Whenever you write it as a javascript statement I will copy it and run it, then respond with its return, so always write a functional statement and avoid the indefinite return. Please answer me correctly with an 'alert' if you understand how this works!"
     }[step];
   }
@@ -70,7 +70,11 @@ class ChatGPTAuto {
     if (this.step === 'three') {
       this.step = null;
     } else if(!this.step) {
-      value = 'Nice! Your statement returned: ' + JSON.stringify(value);
+      if (value == null || value == undefined) {
+        value = 'Nice! Your statement works!';
+      } else {
+        value = 'Nice! Your statement returned: ' + JSON.stringify(value);
+      }
     }
 
     setTimeout(() => {

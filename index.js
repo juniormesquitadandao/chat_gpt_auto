@@ -90,11 +90,11 @@ class ChatGPTAuto {
     }, 1000);
   }
 
-  async executeStatement(statement) {
+  executeStatement(statement) {
     console.log('executing: ' + statement);
 
     try {
-      const result = await new Function(statement)();
+      const result = new Function(statement)();
       this.setTextareaValue(result);
     } catch (e) {
       this.setTextareaValue(e.toString());

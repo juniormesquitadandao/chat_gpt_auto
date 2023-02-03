@@ -70,11 +70,7 @@ class ChatGPTAuto {
     if (this.step === 'three') {
       this.step = null;
     } else if(!this.step) {
-      if (value == null || value == undefined) {
-        value = 'Nice! Your statement works!';
-      } else {
-        value = 'Nice! Your statement returned: ' + JSON.stringify(value);
-      }
+      value = "Nice! Your statement works and returned: " + JSON.stringify(value) + ". It's ok?";
     }
 
     setTimeout(() => {
